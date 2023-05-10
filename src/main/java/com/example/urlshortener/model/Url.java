@@ -1,20 +1,16 @@
 package com.example.urlshortener.model;
 
-@Table("Url")
 public class Url {
-    @Id
-//    @GeneratedValue
     private long id;
-    @Lob
     private String originalUrl;
-    private String shortLink;
-    private int shortLinkLength;
+    private String shortUrl;
+    private int shortUrlLength;
 
-    public Url(long id, String originalUrl, String shortLink, int shortLinkLength) {
+    public Url(long id, String originalUrl, String shortUrl, int shortUrlLength) {
         this.id = id;
         this.originalUrl = originalUrl;
-        this.shortLink = shortLink;
-        this.shortLinkLength = shortLinkLength;
+        this.shortUrl = shortUrl;
+        this.shortUrlLength = shortUrlLength;
     }
 
     public Url() {
@@ -36,20 +32,20 @@ public class Url {
         this.originalUrl = originalUrl;
     }
 
-    public String getShortLink() {
-        return shortLink;
+    public String getShortUrl() {
+        return shortUrl;
     }
 
-    public void setShortLink(String shortLink) {
-        this.shortLink = shortLink;
+    public void setShortUrl(String shortUrl) {
+        this.shortUrl = shortUrl;
     }
 
-    public int getShortLinkLength() {
-        return shortLinkLength;
+    public int getShortUrlLength() {
+        return shortUrlLength;
     }
 
-    public void setShortLinkLength(int shortLinkLength) {
-        this.shortLinkLength = shortLinkLength;
+    public void setShortUrlLength(int shortUrlLength) {
+        this.shortUrlLength = shortUrlLength;
     }
 
     @Override
@@ -57,8 +53,8 @@ public class Url {
         return "Url{" +
                 "id=" + id +
                 ", originalUrl='" + originalUrl + '\'' +
-                ", shortLink='" + shortLink + '\'' +
-                ", shortLinkLength=" + shortLinkLength +
+                ", shortUrl='" + shortUrl + '\'' +
+                ", shortUrlLength=" + shortUrlLength +
                 '}';
     }
 

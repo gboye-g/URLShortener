@@ -2,13 +2,13 @@ package com.example.urlshortener.model;
 
 public class UrlResponseDto {
     private String originalUrl;
-    private String shortLink;
-    private int shortLinkLength;
+    private String shortUrl;
+    private int shortUrlLength;
 
-    public UrlResponseDto(String originalUrl, String shortLink, int shortLinkLength) {
+    public UrlResponseDto(String originalUrl, String shortUrl, int shortUrlLength) {
         this.originalUrl = originalUrl;
-        this.shortLink = shortLink;
-        this.shortLinkLength = shortLinkLength;
+        this.shortUrl = shortUrl;
+        this.shortUrlLength = shortUrlLength;
     }
 
     public UrlResponseDto() {
@@ -22,28 +22,28 @@ public class UrlResponseDto {
         this.originalUrl = originalUrl;
     }
 
-    public String getShortLink() {
-        return shortLink;
+    public String getShortUrl() {
+        return shortUrl;
     }
 
-    public void setShortLink(String shortLink) {
-        this.shortLink = shortLink;
+    public void setShortUrl(String shortUrl) {
+        this.shortUrl = shortUrl;
     }
 
-    public int getShortLinkLength() {
-        return shortLinkLength;
+    public int getShortUrlLength() {
+        return shortUrlLength;
     }
 
-    public void setShortLinkLength(int shortLinkLength) {
-        this.shortLinkLength = shortLinkLength;
+    public void setShortUrlLength(int shortUrlLength) {
+        this.shortUrlLength = shortUrlLength;
     }
 
     @Override
     public String toString() {
         return "UrlResponseDto{" +
                 "originalUrl='" + originalUrl + '\'' +
-                ", shortLink='" + shortLink + '\'' +
-                ", shortLinkLength=" + shortLinkLength +
+                ", shortUrl='" + shortUrl + '\'' +
+                ", shortUrlLength=" + shortUrlLength +
                 '}';
     }
 }

@@ -17,20 +17,20 @@ public class UrlServiceImpl implements UrlService{
     private UrlRepository urlRepository;
 
     @Override
-    public Url generateShortLink(UrlDto urlDto) {
+    public Url generateShortUrl(UrlDto urlDto) {
 
-        if(StringUtils.isNotEmpty(urlDto.getUrl())) {
-            String encodedUrl = encodeUrl(urlDto.getUrl());
+        if(StringUtils.isNotEmpty(urlDto.getOriginalUrl())) {
+            String encodedUrl = encodeUrl(urlDto.getOriginalUrl());
             Url urlToPersist = new Url();
-            urlToPersist.setOriginalUrl(urlDto.getUrl());
-            urlToPersist.setShortLink(encodedUrl);
-            urlToPersist.setShortLinkLength(urlDto.getShortLinkLength());
+            urlToPersist.setOriginalUrl(urlDto.getOriginalUrl());
+            urlToPersist.setShortUrl(encodedUrl);
+            urlToPersist.setShortUrlLength(urlDto.getShortUrlLength());
 
-            if(urlDto.getShortLinkLength() < 3){
+            if(urlDto.getShortUrlLength() < 3){
                 return null;
             }
 
-            Url urlToRet = persistShortLink(urlToPersist);
+            Url urlToRet = urlRepository.saveRecord(urlToPersist);
 
             if (urlToRet != null){
                 return urlToRet;
@@ -42,6 +42,11 @@ public class UrlServiceImpl implements UrlService{
         return null;
     }
 
+    @Override
+    public Url persistShortUrl(Url url) {
+        return null;
+    }
+
     private String encodeUrl(String url) {
         String encodedUrl = "";
         LocalDateTime time = LocalDateTime.now();
@@ -50,16 +55,13 @@ public class UrlServiceImpl implements UrlService{
     return encodedUrl;
     }
 
-    @Override
-    public Url persistShortLink(Url url) {
-        Url urlToRet = urlRepository.save(url);
-        return urlToRet;
-    }
+    public Url searchRecordsByShortUrl(UrlDto urlDto){
+        Url urlToRet = urlRepository.findRecord(urlDto.getShortUrl());
 
-    @Override
-    public Url getEncodedUrl(String url) {
-        Url urlToRet = urlRepository.findByShortLink(url);
-        return urlToRet;
+        if (urlToRet != null) {
+            return urlToRet;
+        }
+        return null;
     }
 
 }
