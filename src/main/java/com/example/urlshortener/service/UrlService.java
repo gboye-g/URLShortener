@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UrlService {
     public Url generateShortUrl(UrlDto urlDto);
-    public Url persistShortUrl(Url url);
     public Url searchRecordsByShortUrl(UrlDto urlDto);
+
+    Url getEncodedUrl(String shortUrl);
 }

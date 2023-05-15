@@ -24,11 +24,11 @@ public class UrlRepository {
     public UrlRepository(DataSource dataSource) {
 
         this.persistShortUrl = new SimpleJdbcCall(dataSource)
-                .withProcedureName("save_Url_object")
+                .withProcedureName("create_url")
                 .returningResultSet(Result, BeanPropertyRowMapper.newInstance(Url.class));
 
         this.getShortUrl = new SimpleJdbcCall(dataSource)
-                .withProcedureName("find_record_using_shortUrl")
+                .withProcedureName("get_url_using_short_url")
                 .returningResultSet(Result, BeanPropertyRowMapper.newInstance(Url.class));
 
     }
