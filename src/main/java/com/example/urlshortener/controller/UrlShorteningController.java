@@ -74,13 +74,8 @@ public class UrlShorteningController {
             return new ResponseEntity<UrlErrorResponseDto>(urlErrorResponseDto, HttpStatus.OK);
         }
 
-        UrlResponseDto urlResponseDto = new UrlResponseDto();
-        urlResponseDto.setOriginalUrl(urlToRet.getOriginalUrl());
-
         response.sendRedirect(urlToRet.getOriginalUrl());
 
-        return new ResponseEntity<UrlResponseDto>(urlResponseDto, HttpStatus.OK);
-
-//        return null;
+        return null;
     }
 }
