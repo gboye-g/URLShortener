@@ -1,7 +1,7 @@
 package com.example.urlshortener.service;
 
 import com.example.urlshortener.model.Url;
-import com.example.urlshortener.model.UrlDto;
+import com.example.urlshortener.dto.UrlDto;
 import org.springframework.stereotype.Service;
 
 @Service

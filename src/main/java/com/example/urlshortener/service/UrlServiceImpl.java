@@ -1,7 +1,7 @@
 package com.example.urlshortener.service;
 
 import com.example.urlshortener.model.Url;
-import com.example.urlshortener.model.UrlDto;
+import com.example.urlshortener.dto.UrlDto;
 import com.example.urlshortener.repository.UrlRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

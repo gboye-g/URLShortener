@@ -1,10 +1,9 @@
 package com.example.urlshortener.controller;
 
 import com.example.urlshortener.model.Url;
-import com.example.urlshortener.model.UrlDto;
-import com.example.urlshortener.model.UrlErrorResponseDto;
-import com.example.urlshortener.model.UrlResponseDto;
-import com.example.urlshortener.repository.UrlRepository;
+import com.example.urlshortener.dto.UrlDto;
+import com.example.urlshortener.dto.UrlErrorResponseDto;
+import com.example.urlshortener.dto.UrlResponseDto;
 import com.example.urlshortener.service.UrlService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
@@ -19,7 +18,6 @@ import java.io.IOException;
 public class UrlShorteningController {
     @Autowired
     private UrlService urlService;
-    private UrlRepository urlRepository;
 
     @PostMapping("/generated")
     public ResponseEntity<?> generateShortUrl(@RequestBody UrlDto urlDto){
@@ -42,14 +40,14 @@ public class UrlShorteningController {
             urlResponseDto.setShortUrl(urlToRet.getShortUrl());
             urlResponseDto.setShortUrlLength(urlToRet.getShortUrlLength());
 
-            return new ResponseEntity<UrlResponseDto>(urlResponseDto, HttpStatus.OK);
+            return new ResponseEntity<>(urlResponseDto, HttpStatus.OK);
         }
 
         UrlErrorResponseDto urlErrorResponseDto = new UrlErrorResponseDto();
         urlErrorResponseDto.setStatus("404");
         urlErrorResponseDto.setError("There was an error processing your request. Please try again");
 
-        return new ResponseEntity<UrlErrorResponseDto>(urlErrorResponseDto, HttpStatus.OK);
+        return new ResponseEntity<>(urlErrorResponseDto, HttpStatus.OK);
     }
 
     @GetMapping("/{shortUrl}")
@@ -60,7 +58,7 @@ public class UrlShorteningController {
             urlErrorResponseDto.setError("Invalid Url");
             urlErrorResponseDto.setStatus("404");
 
-            return new ResponseEntity<UrlErrorResponseDto>(urlErrorResponseDto, HttpStatus.OK);
+            return new ResponseEntity<>(urlErrorResponseDto, HttpStatus.OK);
         }
 
         Url urlToRet = urlService.getEncodedUrl(shortUrl);
@@ -71,7 +69,7 @@ public class UrlShorteningController {
             urlErrorResponseDto.setError("This short URL does not exist");
             urlErrorResponseDto.setStatus("200");
 
-            return new ResponseEntity<UrlErrorResponseDto>(urlErrorResponseDto, HttpStatus.OK);
+            return new ResponseEntity<>(urlErrorResponseDto, HttpStatus.OK);
         }
 
         response.sendRedirect(urlToRet.getOriginalUrl());
